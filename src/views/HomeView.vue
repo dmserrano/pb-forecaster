@@ -1,8 +1,11 @@
 <script setup>
+import DailyForecast from '@/components/DailyForecast.vue';
+import LocationInput from '@/components/LocationInput.vue';
 </script>
 
 <template>
-  <main>
-    <div>Hello</div>
-  </main>
+  <div>
+    <LocationInput />
+    <DailyForecast />
+  </div>
 </template>
