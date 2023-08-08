@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -27,4 +27,14 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm run build --if-present
+    - name: Build
+      env:
+        VITE_API_HOST: ${{ secrets.VITE_API_HOST }}
+        VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
+        VITE_API_URL: ${{ secrets.VITE_API_URL }}
+      run: npm run build --if-present
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
