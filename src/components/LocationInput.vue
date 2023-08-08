@@ -9,24 +9,24 @@ import { useLocationStore } from '@/stores/location';
 const forecastStore = useForecastStore();
 const locationStore = useLocationStore();
 
-const handleLocationChange = async update => {
-    const { location = {}, current = {} } = await getCurrentRealTimeForecast(update);
+const handleLocationChange = async () => {
+    if (!locationStore.search) return;
+
+    const { current, location } = await getCurrentRealTimeForecast(locationStore.search);
     forecastStore.setForecast(current);
 
     if (location.name && location.region) {
-        locationStore.setLocation(
-            `${location.name}, ${location.region}`
-        );
+        locationStore.setLocation(location);
     }
 }
 
 onMounted(() => {
-    getCurrentPosition(locationStore.setLocation);
+    getCurrentPosition(locationStore.setSearch);
 });
 
-watch(() => locationStore.location, async (newPosition, oldPosition) => {
+watch(() => locationStore.search, async (newPosition, oldPosition) => {
     if (newPosition && oldPosition === null) {
-        handleLocationChange(newPosition);
+        handleLocationChange();
     }
 });
 </script>
@@ -35,9 +35,10 @@ watch(() => locationStore.location, async (newPosition, oldPosition) => {
     <v-container class="align-center">
         <v-row no-gutters class="d-flex justify-space-around align-items-center">
             <v-col cols="8" sm="8">
-                <v-text-field label="Location (enter city or zipcode)" v-model="locationStore.location">
+                <v-text-field label="Location (enter city or zipcode)" v-model="locationStore.search"
+                    @keyup.enter="handleLocationChange">
                     <template v-slot:append>
-                        <v-btn icon="mdi-send" :disabled="!locationStore.location" />
+                        <v-btn icon="mdi-send" :disabled="!locationStore.search" @click="handleLocationChange" />
                     </template>
                 </v-text-field>
             </v-col>

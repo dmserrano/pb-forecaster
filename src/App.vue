@@ -1,21 +1,31 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router';
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <h1>Pickleball Forecaster</h1>
-
-      <!-- <nav> -->
-      <!-- No links needed yet -->
-      <!-- <RouterLink to="/">Home</RouterLink> -->
-      <!-- </nav> -->
-    </div>
-  </header>
-
   <main>
-    <RouterView />
+    <header>
+      <div class="wrapper">
+        <div class="text-h2">
+          Pickleball Forecaster <v-icon icon="mdi-weather-sunny" color="yellow" />
+        </div>
+
+        <!-- <nav> -->
+        <!-- No links needed yet -->
+        <!-- <RouterLink to="/">Home</RouterLink> -->
+        <!-- </nav> -->
+      </div>
+    </header>
+
+    <div class="router-container">
+      <RouterView />
+    </div>
+
+    <footer>
+      <div class="text-overline">
+        Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a>
+      </div>
+    </footer>
   </main>
 </template>
 
@@ -55,5 +65,15 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.router-container {
+  flex-grow: 1;
 }
 </style>

@@ -1,10 +1,9 @@
 import axios from 'axios';
 
 export const handleRequest = async (url, options = {}) => {
-    console.log({ options });
     try {
         const response = await axios(url, options);
-        return response;
+        return response.data;
     } catch (error) {
         console.error(error);
         return error;

@@ -51,12 +51,14 @@ const testResponse = {
     }
 };
 
-export const getCurrentRealTimeForecast = async (location = '') => {
-    return testResponse;
-    // return get(`${VITE_API_URL}/current.json`, {
-    //     ...options,
-    //     params: {
-    //         q: location
-    //     }
-    // });
+export const getCurrentRealTimeForecast = async (searchLocation = '') => {
+    // return testResponse;
+    const { current = {}, location = {} } = await get(`${VITE_API_URL}/current.json`, {
+        ...options,
+        params: {
+            q: searchLocation
+        }
+    });
+
+    return { current, location };
 };
