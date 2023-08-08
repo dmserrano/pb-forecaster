@@ -9,7 +9,7 @@ import { useLocationStore } from '@/stores/location';
 const forecastStore = useForecastStore();
 const locationStore = useLocationStore();
 
-const { forecast } = storeToRefs(forecastStore);
+const { forecast, isLoading } = storeToRefs(forecastStore);
 
 const getValue = key => {
     if (forecast.value[key] !== undefined) {
@@ -26,7 +26,11 @@ const condition = computed(() => {
 </script>
 
 <template>
-    <v-card class="mx-auto" max-width="344" variant="outlined" v-if="forecast">
+    <div class="text-center" v-if="isLoading">
+        <v-progress-circular indeterminate color="primary"></v-progress-circular>
+    </div>
+
+    <v-card class="mx-auto" max-width="344" variant="outlined" v-if="!isLoading && forecast">
         <v-card-item>
             <div>
                 <div class="text-overline mb-1">

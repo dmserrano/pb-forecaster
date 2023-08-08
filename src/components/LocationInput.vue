@@ -12,8 +12,11 @@ const locationStore = useLocationStore();
 const handleLocationChange = async () => {
     if (!locationStore.search) return;
 
+    forecastStore.setIsLoading(true);
+    forecastStore.setForecast(null);
     const { current, location } = await getCurrentRealTimeForecast(locationStore.search);
     forecastStore.setForecast(current);
+    forecastStore.setIsLoading(false);
 
     if (location.name && location.region) {
         locationStore.setLocation(location);
@@ -34,7 +37,7 @@ watch(() => locationStore.search, async (newPosition, oldPosition) => {
 <template>
     <v-container class="align-center">
         <v-row no-gutters class="d-flex justify-space-around align-items-center">
-            <v-col cols="8" sm="8">
+            <v-col cols="12" sm="8" md="8" lg="6">
                 <v-text-field label="Location (enter city or zipcode)" v-model="locationStore.search"
                     @keyup.enter="handleLocationChange">
                     <template v-slot:append>

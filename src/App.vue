@@ -6,7 +6,7 @@ import { RouterView } from 'vue-router';
   <main>
     <header>
       <div class="wrapper">
-        <div class="text-h2">
+        <div class="text-h4">
           Pickleball Forecaster <v-icon icon="mdi-weather-sunny" color="yellow" />
         </div>
 
@@ -71,6 +71,7 @@ main {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  padding: 1rem;
 }
 
 .router-container {
