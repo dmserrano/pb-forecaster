@@ -2,7 +2,7 @@
 import { onMounted, watch } from 'vue';
 
 import { getCurrentPosition } from '@/services/geolocation';
-import { getCurrentRealTimeForecast } from '@/services/weather';
+import { getForecastWeather } from '@/services/weather';
 import { useForecastStore } from '@/stores/forecast';
 import { useLocationStore } from '@/stores/location';
 
@@ -14,8 +14,9 @@ const handleLocationChange = async () => {
 
     forecastStore.setIsLoading(true);
     forecastStore.setForecast(null);
-    const { current, location } = await getCurrentRealTimeForecast(locationStore.search);
+    const { current, forecastDay, location } = await getForecastWeather(locationStore.search);
     forecastStore.setForecast(current);
+    forecastStore.setForecastDay(forecastDay);
     forecastStore.setIsLoading(false);
 
     if (location.name && location.region) {

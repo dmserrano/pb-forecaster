@@ -1,11 +1,11 @@
 <script setup>
-import DailyForecast from '@/components/DailyForecast.vue';
+import CurrentForecast from '@/components/CurrentForecast.vue';
 import LocationInput from '@/components/LocationInput.vue';
 </script>
 
 <template>
   <div>
     <LocationInput />
-    <DailyForecast />
+    <CurrentForecast />
   </div>
 </template>

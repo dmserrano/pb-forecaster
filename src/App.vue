@@ -6,7 +6,7 @@ import { RouterView } from 'vue-router';
   <main>
     <header>
       <div class="wrapper">
-        <div class="text-h4">
+        <div class="text-h4 text-grey-lighten-4">
           Pickleball Forecaster <v-icon icon="mdi-weather-sunny" color="yellow" />
         </div>
 
