@@ -1,35 +1,16 @@
 # pickleball-forecaster
 
-This template should help get you started developing with Vue 3 in Vite.
+## About
 
-## Recommended IDE Setup
+Pickleball Forecaster is an app that will quickly let the user see current weather conditions (wind speed, UV, rain percentage, etc) based on their location.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+---
 
-## Customize configuration
+## Technologies used
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+1. Vue v3
+    1. [Pinia](https://pinia.vuejs.org/) - State management library
+    2. [Vuetify](https://vuetifyjs.com/en/) - Component library
+2. [Geolocation Web API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation)
+3. [Weather API](https://www.weatherapi.com/) - Free weather API
+4. GH Pages + GH Actions for deployment
